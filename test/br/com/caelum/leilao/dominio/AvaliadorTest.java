@@ -100,12 +100,13 @@ public class AvaliadorTest {
 	@Test
 	public void deveIdentificarMaiorEMenorEmOrdemDecrescente() {
 		Usuario alan = new Usuario("Alan");
+		Usuario leticia = new Usuario("Leticia");
 		
 		Leilao leilao = new Leilao("Macbook Air");
 		leilao.propoe(new Lance(alan, 400));
-		leilao.propoe(new Lance(alan, 300));
+		leilao.propoe(new Lance(leticia, 300));
 		leilao.propoe(new Lance(alan, 200));
-		leilao.propoe(new Lance(alan, 100));
+		leilao.propoe(new Lance(leticia, 100));
 		
 		Avaliador avaliador = new Avaliador();
 		avaliador.avalia(leilao);
@@ -116,13 +117,14 @@ public class AvaliadorTest {
 	
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
-		Usuario alan = new Usuario("alan");
+		Usuario alan = new Usuario("Alan");
+		Usuario leticia = new Usuario("Leticia");
 		
 		Leilao leilao = new Leilao("Macbook Air");
 		leilao.propoe(new Lance(alan, 100));
-		leilao.propoe(new Lance(alan, 200));
+		leilao.propoe(new Lance(leticia, 200));
 		leilao.propoe(new Lance(alan, 300));
-		leilao.propoe(new Lance(alan, 400));
+		leilao.propoe(new Lance(leticia, 400));
 		
 		Avaliador avaliador = new Avaliador();
 		avaliador.avalia(leilao);
@@ -137,11 +139,12 @@ public class AvaliadorTest {
 	
 	@Test
 	public void deveDevolverTodosLancesCasoNaoHajaNoMinimo3() {
-		Usuario alan = new Usuario("alan");
+		Usuario alan = new Usuario("Alan");
+		Usuario leticia = new Usuario("Leticia");
 		
 		Leilao leilao = new Leilao("Macbook Air");
 		leilao.propoe(new Lance(alan, 100));
-		leilao.propoe(new Lance(alan, 200));
+		leilao.propoe(new Lance(leticia, 200));
 		
 		Avaliador avaliador = new Avaliador();
 		avaliador.avalia(leilao);

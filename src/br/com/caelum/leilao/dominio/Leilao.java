@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Leilao {
-
 	private String descricao;
 	private List<Lance> lances;
 	
@@ -15,7 +14,23 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
-		lances.add(lance);
+		if (lances.isEmpty() || podeDarLance(lance.getUsuario()))
+			lances.add(lance);
+	}
+
+	private boolean podeDarLance(Usuario usuario) {
+		return !ultimoLanceDado().getUsuario().equals(usuario) && qtdDeLancesDo(usuario) < 5;
+	}
+
+	private int qtdDeLancesDo(Usuario usuario) {
+		int total = 0;
+		for (Lance lance : lances)
+			if (lance.getUsuario().equals(usuario)) total++;
+		return total;
+	}
+
+	private Lance ultimoLanceDado() {
+		return lances.get(lances.size()-1);
 	}
 
 	public String getDescricao() {
@@ -25,7 +40,20 @@ public class Leilao {
 	public List<Lance> getLances() {
 		return Collections.unmodifiableList(lances);
 	}
+	
+	public void dobraLance(Usuario usuario) {
+		Lance ultimo = ultimoLanceDo(usuario);
+		
+		if (ultimo != null)
+			propoe(new Lance(usuario, ultimo.getValor() * 2));
+	}
 
-	
-	
+	private Lance ultimoLanceDo(Usuario usuario) {
+		Lance ultimo = null;
+		for (Lance lance : lances)
+			if (lance.getUsuario().equals(usuario))
+				ultimo = lance;
+		
+		return ultimo;
+	}
 }

@@ -1,7 +1,6 @@
 package br.com.caelum.leilao.dominio;
 
 public class Lance {
-
 	private Usuario usuario;
 	private double valor;
 	
@@ -16,8 +15,5 @@ public class Lance {
 
 	public double getValor() {
 		return valor;
-	}
-	
-	
-	
+	}	
 }
