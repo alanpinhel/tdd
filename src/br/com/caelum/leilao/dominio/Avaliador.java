@@ -11,6 +11,9 @@ public class Avaliador {
     private List<Lance> maiores;
 
     public void avalia(Leilao leilao) {
+    	if (leilao.getLances().size() == 0)
+    		throw new RuntimeException("Deve haver ao menos um lance");
+    	
         for(Lance lance : leilao.getLances()) {
             if(lance.getValor() > maiorDeTodos) maiorDeTodos = lance.getValor();
             if (lance.getValor() < menorDeTodos) menorDeTodos = lance.getValor();
